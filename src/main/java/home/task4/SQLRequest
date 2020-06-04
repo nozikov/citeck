@@ -1,0 +1,8 @@
+SELECT (k1+1) as val, (k2-k1-1) as period
+from (
+SELECT t1.val as k1, t2.val as k2 from test t1 join test t2
+where t1.val < t2.val
+GROUP by k1
+HAVING k2 = min(k2)
+)
+WHERE (k2-k1) > 1
